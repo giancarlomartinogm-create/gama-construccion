@@ -1,23 +1,269 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GAMA Group</title>
+<title>GAMA Group · Todo sistema empieza en un punto</title>
 <meta name="robots" content="noindex,nofollow">
-<meta name="description" content="GAMA Group SpA.">
+<meta name="description" content="GAMA Group. Estudio de software en Chile. Del problema al sistema.">
+<meta name="theme-color" content="#0B0F14">
+<meta name="format-detection" content="telephone=no">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="img/icono-180.png">
+<link rel="preload" as="image" href="img/E01-cubo-senal.webp">
 <style>
 @font-face{font-family:SG;src:url(fuentes/space-grotesk.woff2) format("woff2");font-weight:300 700;font-display:swap}
+@font-face{font-family:IN;src:url(fuentes/inter.woff2) format("woff2");font-weight:100 900;font-display:swap}
 @font-face{font-family:JB;src:url(fuentes/jetbrains-mono.woff2) format("woff2");font-weight:100 800;font-display:swap}
+:root{--tinta:#0B0F14;--hueso:#F4F2EE;--senal:#FF6B2C;--niebla:#8A93A0;--borde:rgba(244,242,238,.12)}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{background:#0B0F14;color:#F4F2EE;font-family:SG,system-ui,sans-serif;display:grid;place-items:center;padding:24px}
-main{text-align:center}
-svg{width:56px;height:56px;display:block;margin:0 auto 22px}
-h1{font-weight:600;font-size:clamp(1.6rem,4vw,2.2rem);letter-spacing:-.02em}
-p{font-family:JB,ui-monospace,monospace;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:#8A93A0;margin-top:14px}
-p i{display:inline-block;width:7px;height:7px;background:#FF6B2C;margin-right:9px;vertical-align:middle;animation:l 2s ease-in-out infinite}
-@keyframes l{50%{opacity:.25}}
-</style></head><body><main>
-<svg viewBox="0 0 132 132" aria-hidden="true"><g transform="translate(6 6)"><path fill="#F4F2EE" d="M16 0H120V34H34V120H0V16Z"/><path fill="#FF6B2C" d="M86 86h34v34H86Z"/></g></svg>
-<h1>GAMA Group</h1>
-<p><i></i>Pronto</p>
-</main></body></html>
+html{scroll-behavior:smooth}
+body{background:var(--tinta);color:var(--hueso);font:16px/1.6 IN,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.mono{font-family:JB,ui-monospace,monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--niebla)}
+/* barra */
+header{position:fixed;inset:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:22px clamp(18px,4vw,48px);padding-top:max(22px,env(safe-area-inset-top));z-index:20;transition:background .3s,padding .3s,border-color .3s;border-bottom:1px solid transparent}
+header.solida{background:rgba(11,15,20,.78);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);padding-top:14px;padding-bottom:14px;border-color:var(--borde)}
+.logo{display:flex;align-items:center;gap:12px;font:600 15px SG;letter-spacing:.16em;text-decoration:none}
+.logo svg{width:26px;height:26px}
+/* portada */
+.portada{position:relative;height:100svh;min-height:600px;display:grid;place-items:center;overflow:hidden}
+.fondo{position:absolute;inset:-4%;background:url(img/E01-cubo-senal.webp) 62% 70%/cover no-repeat;animation:respira 24s ease-in-out infinite alternate;will-change:transform}
+@keyframes respira{from{transform:scale(1.02)}to{transform:scale(1.12) translate(-1.5%,-1%)}}
+.velo{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,rgba(11,15,20,.25),rgba(11,15,20,.88) 70%),linear-gradient(180deg,rgba(11,15,20,.6),transparent 30%,transparent 70%,var(--tinta))}
+.marcas{position:absolute;inset:0;pointer-events:none}
+.marcas svg{position:absolute;opacity:.07;animation:flota linear infinite}
+.marcas svg path:last-child{fill:var(--senal)}
+@keyframes flota{from{transform:translateY(20vh) rotate(0)}to{transform:translateY(-120vh) rotate(25deg)}}
+.centro{position:relative;text-align:center;padding:0 20px;max-width:980px}
+.centro .mono i{display:inline-block;width:8px;height:8px;background:var(--senal);margin-right:10px;vertical-align:1px;animation:late 1.6s ease-in-out infinite}
+@keyframes late{50%{opacity:.2}}
+h1{font:600 clamp(42px,8.4vw,112px)/.98 SG;letter-spacing:-.045em;margin:22px 0 26px}
+h1 span{display:inline-block;opacity:0;transform:translateY(40px);animation:sube 1s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes sube{to{opacity:1;transform:none}}
+h1.listo span{opacity:1;transform:none}
+.rota{font:400 clamp(17px,2vw,21px) IN;color:#C9CED6;min-height:1.7em}
+.rota b{font-weight:400;border-right:2px solid var(--senal);padding-right:3px;animation:cursor 1s steps(1) infinite}
+@keyframes cursor{50%{border-color:transparent}}
+.bajar{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none}
+.bajar span{width:1px;height:46px;background:linear-gradient(var(--senal),transparent);animation:cae 2s ease-in-out infinite}
+@keyframes cae{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+/* secciones */
+section{padding:clamp(80px,12vw,150px) clamp(20px,6vw,80px);position:relative}
+.wrap{max-width:1180px;margin:0 auto}
+.etq{display:flex;justify-content:space-between;border-top:1px solid var(--borde);padding-top:16px;margin-bottom:56px}
+h2{font:600 clamp(34px,5.4vw,72px)/1.02 SG;letter-spacing:-.035em;max-width:14ch}
+.dos{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(30px,6vw,90px);align-items:center}
+.img{border-radius:4px;overflow:hidden;aspect-ratio:4/5;background:#11161D}
+.img img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
+.visible .img img{transform:scale(1)}
+.lienzo{position:relative;background:radial-gradient(circle at 70% 75%,rgba(255,107,44,.10),transparent 55%),#0D1218;border:1px solid var(--borde)}
+.lienzo canvas{position:absolute;inset:0;width:100%;height:100%}
+.pie-img{position:absolute;left:18px;bottom:14px}
+.txt p{font-size:clamp(17px,1.6vw,20px);color:#C9CED6;margin-top:22px;max-width:46ch}
+.servicios{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--borde);border:1px solid var(--borde);margin-top:70px}
+.servicios div{background:var(--tinta);padding:28px 26px 34px}
+.servicios .n{font:500 12px JB;color:var(--senal);letter-spacing:.1em}
+.servicios h3{font:600 22px SG;margin:14px 0 8px;letter-spacing:-.01em}
+.servicios p{color:var(--niebla);font-size:15px}
+/* lanzamientos */
+.lanz{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:10px}
+.carta{position:relative;border:1px solid var(--borde);border-radius:6px;padding:26px;min-height:300px;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(160deg,rgba(255,255,255,.03),transparent 60%)}
+.carta::before{content:"";position:absolute;inset:0;background:radial-gradient(400px circle at var(--x,50%) var(--y,0%),rgba(255,107,44,.14),transparent 45%);opacity:0;transition:opacity .3s}
+.carta:hover::before{opacity:1}
+.carta .top{display:flex;justify-content:space-between}
+.carta .num{font:600 64px SG;letter-spacing:-.04em;margin:auto 0 10px}
+.carta h3{font:500 20px SG;min-height:2.6em}
+.tachado{background:var(--hueso);color:transparent;border-radius:2px;filter:blur(.3px);user-select:none;transition:all .5s}
+.carta:hover .tachado.revela,.carta.revelada .tachado.revela{background:transparent;color:var(--hueso);filter:none}
+.carta.revelada::before{opacity:1}
+.estado{display:flex;align-items:center;gap:8px;margin-top:18px}
+.barra{flex:1;height:2px;background:var(--borde);position:relative;overflow:hidden}.barra i{position:absolute;inset:0 auto 0 0;background:var(--senal);width:0;transition:width 1.6s cubic-bezier(.2,.8,.2,1) .3s}
+.visible .barra i{width:var(--p)}
+/* contador */
+.contador{text-align:center;border-top:1px solid var(--borde);border-bottom:1px solid var(--borde);padding:clamp(60px,9vw,110px) 20px;background:url(img/E03-cuadricula-pixel.webp) center/cover;position:relative}
+.contador::before{content:"";position:absolute;inset:0;background:rgba(11,15,20,.82)}
+.contador>*{position:relative}
+.contador .dia{margin:14px 0 18px}
+.dia{font:600 clamp(80px,16vw,200px)/1 SG;letter-spacing:-.06em}
+.dia small{font-size:.32em;color:var(--senal);vertical-align:top;margin-left:6px;letter-spacing:0}
+/* contacto */
+.contacto h2{max-width:none}
+.vias{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:56px}
+.via{display:block;border:1px solid var(--borde);border-radius:6px;padding:24px;text-decoration:none;transition:border-color .25s,transform .25s}
+.via:hover{border-color:var(--senal);transform:translateY(-3px)}
+.via b{display:block;font:500 clamp(18px,1.9vw,22px) SG;margin-top:10px;word-break:break-word}
+.via em{font-style:normal;color:var(--senal);float:right}
+.cta{display:inline-flex;align-items:center;gap:12px;margin-top:46px;background:var(--senal);color:var(--tinta);font:600 16px SG;padding:16px 26px;border-radius:999px;text-decoration:none;transition:transform .2s}
+.cta:hover{transform:scale(1.03)}
+
+.flota{position:fixed;left:50%;bottom:max(16px,env(safe-area-inset-bottom));transform:translate(-50%,120px);z-index:25;display:none;align-items:center;gap:10px;background:var(--senal);color:var(--tinta);font:600 15px SG;padding:14px 22px;border-radius:999px;text-decoration:none;box-shadow:0 12px 40px rgba(0,0,0,.5);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.flota.on{transform:translate(-50%,0)}
+footer{padding:30px clamp(20px,6vw,80px);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--borde)}
+/* aparición */
+.aparece{opacity:0;transform:translateY(30px);transition:opacity 1s,transform 1s cubic-bezier(.2,.8,.2,1)}
+.aparece.visible{opacity:1;transform:none}
+@media (max-width:860px){
+  body{font-size:16px}
+  .dos,.servicios,.lanz,.vias{grid-template-columns:1fr}
+  .img{aspect-ratio:1}
+  header .mono{display:none}
+  .portada{min-height:560px}
+  .fondo{background-position:72% 78%}
+  .centro{padding:0 22px}
+  h1{margin:18px 0 20px}
+  .bajar{bottom:max(22px,env(safe-area-inset-bottom))}
+  section{padding:72px 22px}
+  .etq{margin-bottom:36px;gap:12px}.etq span:last-child{text-align:right}
+  .txt p{font-size:17px}
+  .servicios{margin-top:44px}.servicios div{padding:20px 20px 22px;display:grid;grid-template-columns:28px 1fr;column-gap:8px}
+  .servicios .n{grid-row:span 2;padding-top:5px}.servicios h3{margin:0 0 4px;font-size:19px}
+  .lanz{gap:12px}.carta{min-height:0;padding:22px}.carta .num{font-size:52px;margin:26px 0 8px}
+  .tachado{background:rgba(244,242,238,.78)}
+  .contador{padding:64px 22px}
+  .vias{gap:10px;margin-top:36px}.via{padding:16px 18px}.via b{margin-top:4px}
+  .cta{width:100%;justify-content:center;margin-top:30px}
+  .flota{display:inline-flex}
+  footer{padding-bottom:calc(90px + env(safe-area-inset-bottom))}
+  .lienzo .pie-img{left:14px;bottom:12px;font-size:10.5px}
+}
+/* Pantallas anchas: el cubo (imagen vertical) se ancla abajo a la derecha para no quedar detrás del título. */
+@media (min-aspect-ratio:1/1) and (min-width:700px){.fondo{background-size:auto 118%;background-position:97% 55%;-webkit-mask-image:radial-gradient(ellipse 34% 52% at 84% 70%,#000 35%,transparent 100%);mask-image:radial-gradient(ellipse 34% 52% at 84% 70%,#000 35%,transparent 100%)}}
+/* Celular acostado o ventanas muy bajas: título más chico para que la portada entre completa. */
+@media (max-height:520px) and (min-aspect-ratio:1/1){.portada{min-height:100svh}h1{font-size:clamp(30px,5.6vw,54px);margin:10px 0 12px}.rota{font-size:16px}.bajar{display:none}header{padding-top:12px;padding-bottom:12px}}
+@media (max-width:480px){.etq span:last-child{display:none}}
+@media (hover:none){.solo-cursor{display:none}}
+@media (hover:hover){.solo-toque{display:none}}
+@media (prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important}h1 span,.aparece{opacity:1;transform:none}}
+</style></head>
+<body>
+<header>
+  <a class="logo" href="#"><svg viewBox="0 0 132 132" aria-hidden="true"><path fill="#F4F2EE" d="M16 0H120V34H34V120H0V16Z"/><path fill="#FF6B2C" d="M86 86h34v34H86Z"/></svg>GAMA</a>
+  <span class="mono" id="reloj">Chile</span>
+</header>
+
+<div class="portada">
+  <div class="fondo" id="fondo"></div>
+  <div class="velo"></div>
+  <div class="marcas" id="marcas" aria-hidden="true"></div>
+  <div class="centro">
+    <div class="mono"><i></i>Transmisión 001 · En construcción</div>
+    <h1 id="titulo">Todo sistema empieza en un punto.</h1>
+    <p class="rota"><b id="rota"></b></p>
+  </div>
+  <a class="bajar mono" href="#que">Descubra más<span></span></a>
+</div>
+
+<section id="que">
+  <div class="wrap">
+    <div class="etq mono"><span>01 · Qué es GAMA</span><span>Estudio de software</span></div>
+    <div class="dos aparece">
+      <div class="txt">
+        <h2>Del problema al sistema.</h2>
+        <p>Somos un estudio de software en Chile. Usted nos cuenta cómo trabaja su negocio y nosotros lo convertimos en un sistema que funciona: rápido de ver, claro de pagar y hecho para durar.</p>
+        <p>Sin jerga, con plazos claros y algo concreto que mirar desde el primer día.</p>
+      </div>
+      <div class="img lienzo"><canvas id="gamma" role="img" aria-label="La gamma de GAMA se arma módulo a módulo desde un punto naranja"></canvas><span class="mono pie-img">Todo sistema empieza en un punto</span></div>
+    </div>
+    <div class="servicios aparece">
+      <div><span class="n">A</span><h3>Webs que venden</h3><p>Su negocio presentado como merece, listo para recibir clientes desde el celular.</p></div>
+      <div><span class="n">B</span><h3>Sistemas a medida</h3><p>Reservas, pedidos, inventario o lo que su operación necesite, en un solo lugar.</p></div>
+      <div><span class="n">C</span><h3>Menos planillas</h3><p>Automatizamos lo que hoy se copia a mano, para que su equipo haga negocio.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="viene" style="padding-top:0">
+  <div class="wrap">
+    <div class="etq mono"><span>02 · Lo que viene</span><span>Lanzamientos</span></div>
+    <h2 class="aparece" style="margin-bottom:56px">Tres lanzamientos. Uno ya funciona.</h2>
+    <div class="lanz aparece">
+      <article class="carta"><div class="top mono"><span>Lanzamiento</span><span style="color:var(--senal)">Pruebas privadas</span></div><div class="num">001</div>
+        <h3>Su web, <span class="tachado revela">desde algo que ya tiene</span>.</h3>
+        <div class="estado mono"><div class="barra" style="--p:78%"><i></i></div>Casi listo</div></article>
+      <article class="carta"><div class="top mono"><span>Lanzamiento</span><span>En diseño</span></div><div class="num">002</div>
+        <h3><span class="tachado">Su negocio</span> <span class="tachado">funcionando solo</span>.</h3>
+        <div class="estado mono"><div class="barra" style="--p:35%"><i></i></div>Pronto</div></article>
+      <article class="carta"><div class="top mono"><span>Lanzamiento</span><span>Clasificado</span></div><div class="num">003</div>
+        <h3><span class="tachado">Todavía no</span> <span class="tachado">podemos contarlo</span>.</h3>
+        <div class="estado mono"><div class="barra" style="--p:10%"><i></i></div>Más adelante</div></article>
+    </div>
+    <p class="mono aparece" style="margin-top:22px"><span class="solo-cursor">Pase el cursor sobre el 001.</span><span class="solo-toque">Toque el 001.</span></p>
+  </div>
+</section>
+
+<div class="contador aparece">
+  <div class="mono">GAMA Group</div>
+  <div class="dia">(0,0)</div>
+  <div class="mono">Todo sistema empieza en un punto. El suyo también.</div>
+</div>
+
+<section class="contacto" id="contacto">
+  <div class="wrap">
+    <div class="etq mono"><span>03 · Hablemos</span><span>Respondemos el mismo día hábil</span></div>
+    <h2 class="aparece">¿Tiene un problema que debería ser un sistema?</h2>
+    <div class="vias aparece">
+      <a class="via" href="mailto:hola@gamagroup.cl"><span class="mono">Correo</span><em>↗</em><b>hola@gamagroup.cl</b></a>
+      <a class="via" href="https://instagram.com/wearegamagroup" target="_blank" rel="noopener"><span class="mono">Instagram</span><em>↗</em><b>@wearegamagroup</b></a>
+      <div class="via"><span class="mono">Base</span><b>Chile</b></div>
+    </div>
+    <a class="cta aparece" href="mailto:hola@gamagroup.cl?subject=Quiero%20enterarme%20primero&body=Hola%2C%20quiero%20saber%20cuando%20salga%20el%20lanzamiento%20001.">Quiero enterarme primero →</a>
+  </div>
+</section>
+
+<a class="flota" id="flota" href="#contacto">Hablemos →</a>
+<footer class="mono"><span>GAMA Group SpA · Chile</span><span>We are GAMA</span></footer>
+
+<script>
+// Marcas de agua: la gamma de la marca flotando hacia arriba, a distintas velocidades.
+const G='<svg viewBox="0 0 132 132"><path fill="#F4F2EE" d="M16 0H120V34H34V120H0V16Z"/><path d="M86 86h34v34H86Z"/></svg>';
+const m=document.getElementById('marcas');
+for(let i=0;i<9;i++){const d=document.createElement('div');d.innerHTML=G;const s=d.firstChild,t=24+Math.random()*90;
+  Object.assign(s.style,{width:t+'px',height:t+'px',left:Math.random()*100+'%',top:'100%',animationDuration:(28+Math.random()*30)+'s',animationDelay:(-Math.random()*40)+'s'});m.append(s)}
+// Título palabra por palabra.
+const h=document.getElementById('titulo');h.innerHTML=h.textContent.split(' ').map((w,i)=>`<span style="animation-delay:${.15+i*.12}s">${w}</span>`).join(' ');
+// Red de seguridad: si el navegador no corre la animación, el título igual aparece.
+setTimeout(()=>h.classList.add('listo'),2200);
+// Frases que se escriben solas.
+const frases=['Del problema al sistema.','Véalo antes de pagarlo.','Menos planillas, más negocio.','Hecho en Chile.'];
+const r=document.getElementById('rota');let f=0,c=0,borrando=false;
+(function escribe(){const t=frases[f];r.textContent=t.slice(0,c);
+  if(!borrando&&c<t.length){c++;return setTimeout(escribe,55)}
+  if(!borrando){borrando=true;return setTimeout(escribe,2200)}
+  if(c>0){c--;return setTimeout(escribe,25)}
+  borrando=false;f=(f+1)%frases.length;setTimeout(escribe,400)})();
+// Parallax suave del fondo con el mouse.
+const fondo=document.getElementById('fondo');
+if(matchMedia('(hover:hover)').matches)addEventListener('pointermove',e=>{const x=(e.clientX/innerWidth-.5)*14,y=(e.clientY/innerHeight-.5)*10;fondo.style.translate=`${-x}px ${-y}px`;m.style.transform=`translate(${x*1.6}px,${y*1.6}px)`});
+// Luz que sigue al cursor en las cartas.
+document.querySelectorAll('.carta').forEach(c=>c.addEventListener('pointermove',e=>{const b=c.getBoundingClientRect();c.style.setProperty('--x',e.clientX-b.left+'px');c.style.setProperty('--y',e.clientY-b.top+'px')}));
+// Toque para revelar (celular) y barra con fondo al bajar.
+document.querySelectorAll('.carta').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('revelada')));
+const cab=document.querySelector('header'),flota=document.getElementById('flota'),contacto=document.getElementById('contacto');
+let visibleContacto=false;new IntersectionObserver(([e])=>{visibleContacto=e.isIntersecting;mover()},{threshold:.1}).observe(contacto);
+function mover(){const y=scrollY;cab.classList.toggle('solida',y>40);flota.classList.toggle('on',y>innerHeight*.8&&!visibleContacto)}
+addEventListener('scroll',mover,{passive:true});mover();
+// Aparición al bajar.
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.18});
+document.querySelectorAll('.aparece').forEach(e=>io.observe(e));
+// La gamma se arma desde el punto: primero el módulo naranja, después cada módulo según su distancia a él. Se repite.
+(function(){const cv=document.getElementById('gamma'),cx=cv.getContext('2d');const N=9,quieto=matchMedia('(prefers-reduced-motion:reduce)').matches;
+ const forma=[];for(let r=0;r<N;r++)for(let c=0;c<N;c++){const barra=r<3||c<3,naranja=r>=6&&c>=6;if(barra||naranja)forma.push({r,c,naranja})}
+ const o={r:7,c:7};forma.forEach(m=>m.d=m.naranja?0:Math.hypot(m.r-o.r,m.c-o.c));const dmax=Math.max(...forma.map(m=>m.d));
+ let W,H,lado,x0,y0,t0=performance.now(),mx=-1,my=-1;
+ function medir(){const r=devicePixelRatio||1,b=cv.getBoundingClientRect();W=b.width;H=b.height;cv.width=W*r;cv.height=H*r;cx.setTransform(r,0,0,r,0,0);lado=Math.min(W,H)*.62/N;x0=(W-lado*N)/2;y0=(H-lado*N)/2-lado*.4}
+ medir();addEventListener('resize',medir);
+ cv.parentElement.addEventListener('pointermove',e=>{const b=cv.getBoundingClientRect();mx=e.clientX-b.left;my=e.clientY-b.top});cv.parentElement.addEventListener('pointerleave',()=>{mx=my=-1});
+ function cuadro(ahora){const T=quieto?99:((ahora-t0)/1000)%9;cx.clearRect(0,0,W,H);
+  // cuadrícula de fondo
+  cx.fillStyle='rgba(244,242,238,.07)';for(let r=-2;r<N+2;r++)for(let c=-2;c<N+2;c++)cx.fillRect(x0+c*lado+lado/2-1,y0+r*lado+lado/2-1,2,2);
+  const salida=T>7.6?Math.min(1,(T-7.6)/1.2):0;
+  forma.forEach(m=>{const inicio=m.naranja?.2:1.1+(m.d/dmax)*2.6;let a=Math.min(1,Math.max(0,(T-inicio)/.45))*(1-salida);if(a<=0)return;
+   const x=x0+m.c*lado,y=y0+m.r*lado,g=lado*.08;let cerca=0;if(mx>=0){const dd=Math.hypot(x+lado/2-mx,y+lado/2-my);cerca=Math.max(0,1-dd/(lado*2.2))}
+   const s=(lado-g*2)*(0.6+0.4*a)+cerca*3;cx.globalAlpha=a;cx.fillStyle=m.naranja?'#FF6B2C':`rgba(244,242,238,${.82+cerca*.18})`;
+   cx.fillRect(x+lado/2-s/2,y+lado/2-s/2-cerca*2,s,s)});
+  cx.globalAlpha=1;
+  // el punto late antes de que empiece todo
+  if(T<1.1&&!quieto){const p=.5+.5*Math.sin(T*9);cx.strokeStyle=`rgba(255,107,44,${p})`;cx.strokeRect(x0+6*lado-4,y0+6*lado-4,lado*3+8,lado*3+8)}
+  if(!quieto)requestAnimationFrame(cuadro)}
+ requestAnimationFrame(cuadro)})();
+// Reloj de Chile en la barra.
+const reloj=document.getElementById('reloj');setInterval(()=>reloj.textContent='Chile · '+new Date().toLocaleTimeString('es-CL',{timeZone:'America/Santiago',hour:'2-digit',minute:'2-digit',second:'2-digit'}),1000);
+</script>
+</body></html>
